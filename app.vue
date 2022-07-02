@@ -4,7 +4,7 @@
       <BaseTheHeader />
     </header>
     <main class="main">
-      <div class="canvas">
+      <div class="main_window">
         <Main />
       </div>
       <aside class="aside">
@@ -19,32 +19,28 @@
 
 <style lang="scss">
 .main {
-  position: relative;
-  height: 80vh;
-  max-width: 1170px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-top: 10px;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  max-height: 100vh;
+  width: 100vw;
+  min-width: 100vw;
 }
 
-.canvas {
-  position: relative;
+.main_window {
   border: 1px solid black;
   border-radius: 7px;
-  border-color: #AFAFAF;
-  height: 100%;
-  width: 140vh;
-  margin: 0px 10px 0px 10px
+  margin: 10px;
+  display: flex;
+  width: 75vw;
+  height: 80vh;
+  justify-content: center;
 }
-
 .aside {
   border: 1px solid black;
+  width: 15vw;
+  height: 80vh;
   border-radius: 7px;
-  border-color: #AFAFAF;
-  width: 40vh;
+  margin: 10px;
 }
 </style>
