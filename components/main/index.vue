@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 
-const canvasRef = ref(null)
+const canvasRef = ref<HTMLCanvasElement | null>(null)
+let ctx: CanvasRenderingContext2D = ref(null)
 
 onMounted(() => {
-  console.log(canvasRef)
+  ctx = canvasRef.value.getContext("2d")
+  ctx.rect(10, 100, 20, 30)
+  ctx.fill()
 })
 </script>
 
