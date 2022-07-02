@@ -1,0 +1,20 @@
+@import url('assets/css/zero-styles.scss');
+
+body {
+    background-color: #E5E5E5;
+    font-family: 'MPL';
+}
+
+.wrapper {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+@font-face {
+    font-family: 'MPL';
+    src: url('assets/fonts/MPLUS1Code-VariableFont_wght.ttf');
+    font-weight: 600;
+}
