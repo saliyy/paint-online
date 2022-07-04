@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import Tool from '~~/tools/Tool'
+import Tool from '~~/canvas-tools/Tool'
 
 export const useToolStore = defineStore({
     id: 'tool',
@@ -14,7 +14,6 @@ export const useToolStore = defineStore({
     actions: {
         setTool(tool: Tool) {
             this.selectedTool = tool
-            debugger
         }
     }
-}) 
+})

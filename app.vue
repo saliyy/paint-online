@@ -19,12 +19,12 @@
 
 <style lang="scss">
 .main {
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
-  max-height: 100vh;
-  width: 100vw;
-  min-width: 100vw;
+  max-height: 100%;
+  width: 100%;
+  min-width: 100%;
 }
 
 .main_window {
@@ -32,7 +32,7 @@
   border-radius: 7px;
   margin: 10px;
   display: flex;
-  width: 75vw;
+  width: 75%;
   height: 80vh;
   justify-content: center;
 }
