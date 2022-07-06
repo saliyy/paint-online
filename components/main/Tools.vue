@@ -4,8 +4,9 @@ import { useToolStore } from "~~/store/tool";
 import Brush from "~~/canvas-tools/Brush";
 import Tool from "~~/canvas-tools/Tool";
 import Eraser from "~~/canvas-tools/Eraser";
+import Rect from "~~/canvas-tools/Rect";
 import {onMounted} from "vue";
-import {downloadCanvas} from "~/lib/downloadCanvas";
+import {downloadCanvas} from "~/utils/downloadCanvas";
 
 const toolState = useToolStore();
 const ctx = useCanvasContext2DStore().getCtx;
@@ -27,9 +28,8 @@ function save() {
   <div class="toolbar">
     <button class="toolbar__button brush" @click="setTool(new Brush(ctx))" />
     <button class="toolbar__button circle" />
-    <button class="toolbar__button rect" />
+    <button class="toolbar__button rect" @click="setTool(new Rect(ctx))" />
     <button class="toolbar__button eraser" @click="setTool(new Eraser(ctx))" />
-    <button class="toolbar__button line" />
     <button class="toolbar__button undo" />
     <button class="toolbar__button redo" />
     <button class="toolbar__button save" @click="save()"/>

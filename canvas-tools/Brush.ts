@@ -1,6 +1,5 @@
 import Tool from "./Tool";
-
-type Coords = number;
+import {Coords} from "~/canvas-tools/types/Coords";
 
 export default class Brush extends Tool {
     private isMouseDown: boolean = false;
@@ -33,7 +32,7 @@ export default class Brush extends Tool {
         }
     }
 
-    private draw(x: Coords, y: Coords) {
+    protected draw(x: Coords, y: Coords) {
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
     }
