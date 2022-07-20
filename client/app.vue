@@ -3,22 +3,19 @@
     <header>
       <BaseTheHeader />
     </header>
-    <main class="main">
-      <div class="main_window">
+    <main class="wrapper">
+      <div class="window">
         <Main />
       </div>
-      <aside class="aside">
-        activity
-      </aside>
+      <aside class="aside">activity</aside>
     </main>
-    <footer>footer</footer>
   </div>
 </template>
 
 <script lang="ts" setup></script>
 
 <style lang="scss">
-.main {
+.wrapper {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -27,14 +24,12 @@
   min-width: 100%;
 }
 
-.main_window {
+.window {
   border: 1px solid black;
   border-radius: 7px;
   margin: 10px;
-  display: flex;
   width: 75%;
   height: 80vh;
-  justify-content: center;
 }
 .aside {
   border: 1px solid black;

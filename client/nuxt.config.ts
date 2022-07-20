@@ -4,7 +4,7 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
     css: ['~/assets/css/main.scss'],
     modules: [
-        '@pinia/nuxt'
+        '@pinia/nuxt',
     ],
     vite: {
         css: {

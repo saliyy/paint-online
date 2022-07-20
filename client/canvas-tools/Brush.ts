@@ -32,7 +32,7 @@ export default class Brush extends Tool {
         }
     }
 
-    protected draw(x: Coords, y: Coords) {
+    public draw(x: Coords, y: Coords) {
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
     }

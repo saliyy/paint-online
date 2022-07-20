@@ -9,11 +9,17 @@ export const useToolStore = defineStore({
     getters: {
         getTool(): Tool {
             return this.selectedTool
-        }
+        },
     },
     actions: {
         setTool(tool: Tool) {
             this.selectedTool = tool
+        },
+        setStrokeColor(color: string) {
+            this.selectedTool.strokeColor = color
+        },
+        setLineWidth(width: number) {
+            this.selectedTool.lineWidth = width
         }
     }
 })
