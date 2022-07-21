@@ -5,15 +5,24 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
     <div class="window">
-      <Window />
+      <MainWindow />
     </div>
     <aside class="aside">activity</aside>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  max-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
 .window {
   border: 1px solid black;
   border-radius: 7px;

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const isOpen = ref(true);
 
-const closeModal = () => (isOpen.value = false);
+const closeModal = () => isOpen.value = false;
 </script>
 
 <template>

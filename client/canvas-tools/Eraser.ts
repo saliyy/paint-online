@@ -7,7 +7,7 @@ export default class Eraser extends Brush {
         this.ctx.strokeStyle = '#E5E5E5'
     }
 
-    protected draw(x: Coords, y: Coords) {
+    public draw(x: Coords, y: Coords) {
         this.ctx.lineWidth = 15
         this.ctx.lineTo(x, y)
         this.ctx.stroke()

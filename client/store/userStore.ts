@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
+import makeId from '@/utils/randomId';
 
 export interface User {
-    id: number | string,
+    id?: number | string,
     name: string;
-    disabled: false
+    disabled?: false
 }
+
 
 /*
  Used when user is connected
@@ -18,11 +20,16 @@ export const useUserStore = defineStore({
     actions: {
         setUser(user: User) {
             this.user = user
+            this.user.id = makeId()
+            this.isAuth = true
         }
     },
     getters: {
-        isAuth(): boolean {
-            return this.isAuth === true
+        userIsAuth(): boolean {
+            return this.isAuth
+        },
+        getUser(): User | null {
+            return this.user
         }
     }
 })

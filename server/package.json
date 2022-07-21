@@ -1,22 +1,15 @@
 {
-  "name": "server",
+  "name": "paint-online-server-side",
   "version": "1.0.0",
-  "description": "server side for paint-online",
+  "description": "simple server side of paint-online-app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saliyy/paint-online.git"
-  },
   "author": "Saliy Vladislav",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/saliyy/paint-online/issues"
-  },
-  "homepage": "https://github.com/saliyy/paint-online#readme",
   "dependencies": {
+    "@fastify/websocket": "^6.0.1",
     "fastify": "^4.2.1"
   }
 }

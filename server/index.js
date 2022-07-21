@@ -1,17 +1,27 @@
-const fastify = require('fastify')({ logger: true });
+'use strict';
+const fastify = require('fastify')();
 
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' };
+fastify.register(require('@fastify/websocket'), {
+  options: { maxPayload: 1048576 },
 });
 
-// Run the server!
-const start = async () => {
-  try {
-    await fastify.listen({ port: 3000 });
-  } catch (err) {
-    fastify.log.error(err);
+fastify.register(async function (fastify) {
+  fastify.get(
+    '/',
+    { websocket: true },
+    (connection /* SocketStream */, req /* FastifyRequest */) => {
+      connection.socket.on('message', (message) => {
+        message = JSON.parse(message);
+        connection.socket.send('hi from server');
+      });
+    }
+  );
+});
+
+fastify.listen({ port: 5000 }, (err, address) => {
+  if (err) {
+    console.error(err);
     process.exit(1);
   }
-};
-start();
+  console.log(`Server listening at: ${address}`);
+});
