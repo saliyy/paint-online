@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/websocket": "^6.0.1",
-    "fastify": "^4.2.1"
+    "fastify": "^4.2.1",
+    "nodemon": "^2.0.19"
   }
 }
