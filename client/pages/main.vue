@@ -9,7 +9,9 @@ definePageMeta({
     <div class="window">
       <MainWindow />
     </div>
-    <aside class="aside">activity</aside>
+    <aside class="aside">
+      <ActivityWindow />
+    </aside>
   </div>
 </template>
 
@@ -32,7 +34,7 @@ definePageMeta({
 }
 .aside {
   border: 1px solid black;
-  width: 15vw;
+  width: 90%;
   height: 80vh;
   border-radius: 7px;
   margin: 10px;

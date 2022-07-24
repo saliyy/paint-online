@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+// todo переименовать и сделать короче
 export const useCanvasContext2DStore = defineStore({
     id: 'canvas',
     state: () => ({

@@ -1,3 +1,7 @@
+import { useUserStore } from "@/store/userStore"
+
 export default defineNuxtRouteMiddleware((to, from) => {
-    console.log("hey hey this is middleware!")
+    if (to.fullPath != '/' && !useUserStore().userIsAuth) {
+        return navigateTo({ path: '/'})
+    }
 })

@@ -1,5 +1,14 @@
+import { BrushActionPayload } from './../actions/BrushAction';
+import { useToolStore } from './../store/toolState';
+import { useCanvasContext2DStore } from './../store/canvasContextState';
 import Tool from "./Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
+import BrushAction from "~~/actions/BrushAction";
+
+async function sendToWs(brushPayload: BrushActionPayload) {
+    const brushAction = new BrushAction(brushPayload);
+    await brushAction.send()
+}
 
 export default class Brush extends Tool {
     private isMouseDown: boolean = false;
@@ -28,12 +37,15 @@ export default class Brush extends Tool {
 
     private onMouseEventHandler(e: MouseEvent) {
         if (this.isMouseDown) {
-            this.draw(e.clientX - this.ctx.canvas.offsetLeft, e.clientY - this.ctx.canvas.offsetTop)
+            const x = e.clientX - this.ctx.canvas.offsetLeft
+            const y = e.clientY - this.ctx.canvas.offsetTop
+            sendToWs({x , y})
+            Brush.draw(x, y)
         }
     }
 
-    public draw(x: Coords, y: Coords) {
-        this.ctx.lineTo(x, y)
-        this.ctx.stroke()
+    public static draw(x: Coords, y: Coords, ctx: CanvasRenderingContext2D = useCanvasContext2DStore().getCtx) {
+        ctx.lineTo(x, y)
+        ctx.stroke()
     }
 }

@@ -1,12 +1,21 @@
 <script lang="ts" setup>
-const isOpen = ref(true);
+interface Props {
+  visible: boolean
+}
 
-const closeModal = () => isOpen.value = false;
+interface Emits {
+  (e: 'close'): void;
+}
+
+defineProps<Props>();
+const emits = defineEmits<Emits>();
+
+const closeModal = (): void => emits('close')
 </script>
 
 <template>
   <transition name="fade">
-    <div class="modal" v-if="isOpen">
+    <div class="modal" v-if="visible">
       <div class="modal__backdrop" @click="closeModal()" />
 
       <div class="modal__dialog">
