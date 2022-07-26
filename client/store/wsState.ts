@@ -2,7 +2,7 @@ import { useUserStore } from '@/store/userStore';
 import { useActionsState } from './actionsState';
 import { defineStore } from 'pinia'
 
-export const onReceieve = (m: MessageEvent) => {
+export const onReceive = (m: MessageEvent) => {
     const data = JSON.parse(m.data) 
     useActionsState().addAction({
         method: data.method,
@@ -20,7 +20,7 @@ export const useWS = defineStore({
     actions: {
         registerWS(socket): WebSocket {
             this.ws = new WebSocket(socket)
-            this.ws.onmessage = (m: MessageEvent) => onReceieve(m)
+            this.ws.onmessage = (m: MessageEvent) => onReceive(m)
             return this.ws
         },
         async sendAction(data: any) {

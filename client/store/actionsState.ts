@@ -8,8 +8,12 @@ export interface Action {
 }
 
 const identifyAction = (action: Action): void => {
-    if (action.method === 'Brush') {
-        Brush.draw(action.payload.x, action.payload.y)
+    switch (action.method) {
+        case "Brush":
+            Brush.draw(action.payload.x, action.payload.y)
+            break;
+        default:
+
     }
 }
 
@@ -23,10 +27,10 @@ export const useActionsState = defineStore({
         
     },
     actions: {
-        async addAction(action: Action) {
-            await this.actions.push(action)
+         addAction(action: Action) {
+             this.actions.push(action)
             try {
-                identifyAction(action)
+                 identifyAction(action)
             } catch (e) {
                 
             }

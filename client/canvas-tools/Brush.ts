@@ -1,14 +1,16 @@
 import { BrushActionPayload } from './../actions/BrushAction';
-import { useToolStore } from './../store/toolState';
 import { useCanvasContext2DStore } from './../store/canvasContextState';
 import Tool from "./Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
 import BrushAction from "~~/actions/BrushAction";
 
+
+// уснести по своим директориям
 async function sendToWs(brushPayload: BrushActionPayload) {
     const brushAction = new BrushAction(brushPayload);
     await brushAction.send()
 }
+
 
 export default class Brush extends Tool {
     private isMouseDown: boolean = false;
@@ -34,6 +36,7 @@ export default class Brush extends Tool {
     private onMouseUpHandler() {
         this.isMouseDown = false
     }
+
 
     private onMouseEventHandler(e: MouseEvent) {
         if (this.isMouseDown) {
