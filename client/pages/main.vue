@@ -29,12 +29,12 @@ definePageMeta({
   border: 1px solid black;
   border-radius: 7px;
   margin: 10px;
-  width: 75%;
+  width: 90vw;
   height: 80vh;
 }
 .aside {
   border: 1px solid black;
-  width: 90%;
+  width: 50vh;
   height: 80vh;
   border-radius: 7px;
   margin: 10px;

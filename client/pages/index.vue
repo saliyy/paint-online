@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from "@/store/userStore";
 import { useWS } from "@/store/wsState";
+import UserConnectedAction from "~/actions/concrete-actions/UserConnectedAction";
 
 const userName = ref("");
 const isAuthError = ref(false);
@@ -16,11 +17,8 @@ const auth = () => {
     userState.setUser({ name: userName.value });
     const ws = wsState.registerWS(`ws://127.0.0.1:5000/`);
     ws.onopen = () => {
-      wsState.sendAction({
-          method: 'connection',
-          payload: [],
-          message: `User ${userState.getUser.name} has connected!`
-      })
+      const userConnectedAction = new UserConnectedAction([])
+      userConnectedAction.send()
     };
 
     navigateTo({ path: "/main" });
@@ -32,7 +30,7 @@ const auth = () => {
     <span class="not-auth" v-if="!userState.isAuth"
       >You are not logged in <button class="auth-btn" @click="dialogVisible = true">Log in</button></span
     >
-    <Dialog :visible.sync="dialogVisible" @close="dialogVisible = false">
+    <Dialog :visible="dialogVisible" @close="dialogVisible = false">
       <template #header>Log in to continue</template>
       <template #body>
         Enter your name

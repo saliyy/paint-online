@@ -1,14 +1,14 @@
-import { BrushActionPayload } from './../actions/BrushAction';
+import { BrushActionPayload } from '../actions/concrete-actions/BrushDrawAction';
 import { useCanvasContext2DStore } from './../store/canvasContextState';
 import Tool from "./Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
-import BrushAction from "~~/actions/BrushAction";
+import BrushDrawAction from "~/actions/concrete-actions/BrushDrawAction";
 
 
 // уснести по своим директориям
 async function sendToWs(brushPayload: BrushActionPayload) {
-    const brushAction = new BrushAction(brushPayload);
-    await brushAction.send()
+    const brushDrawAction = new BrushDrawAction(brushPayload);
+    await brushDrawAction.send()
 }
 
 

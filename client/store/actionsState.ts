@@ -1,39 +1,21 @@
-import Brush from '@/canvas-tools/Brush';
 import { defineStore } from 'pinia'
+import IAction from "~/actions/IAction";
+import {computed, reactive} from "@vue/reactivity";
 
-export interface Action {
-    method: string,
-    payload?: any
-    message: string
-}
+export const useActionsState = defineStore('actions', () => {
+    const actions: IAction[] = reactive([])
 
-const identifyAction = (action: Action): void => {
-    switch (action.method) {
-        case "Brush":
-            Brush.draw(action.payload.x, action.payload.y)
-            break;
-        default:
+    const actionsInActivityWin = computed(() => {
+        return actions.filter((action: IAction) => action.message.showInActivityWindow)
+    })
 
+    function addAction(action: IAction) {
+        actions.push(action)
     }
-}
 
-
-export const useActionsState = defineStore({
-    id: 'action-state',
-    state: () => ({
-        actions: [] as Action[]
-    }),
-    getters: {
-        
-    },
-    actions: {
-         addAction(action: Action) {
-             this.actions.push(action)
-            try {
-                 identifyAction(action)
-            } catch (e) {
-                
-            }
-        }
+    return {
+        actions,
+        actionsInActivityWin,
+        addAction
     }
-}) 
+})

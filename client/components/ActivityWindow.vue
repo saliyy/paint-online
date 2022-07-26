@@ -8,8 +8,8 @@ const actionsState = useActionsState();
 <template>
  <div>
     <ul>
-        <li v-for="action in actionsState.$state.actions" :key="action.message">
-            {{ action.message }}
+        <li v-for="action in actionsState.actionsInActivityWin" :key="action.message">
+            {{ action.message.getMessage() }}
         </li>
     </ul>
  </div>
