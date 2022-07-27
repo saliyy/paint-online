@@ -1,9 +1,9 @@
 import { Coords } from "~/canvas-tools/types/Coords";
-import IAction from "~/actions/IAction";
 import Brush from "~/canvas-tools/Brush";
-import ActionStrategy from "~/actions/ActionStrategy";
+import ActionStrategy, {Payload} from "~/actions/ActionStrategy";
+import IAction from "~/actions/IAction";
 
-export interface BrushActionPayload {
+export interface BrushActionPayload extends Payload {
     x: Coords;
     y: Coords;
 }

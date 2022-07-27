@@ -6,11 +6,6 @@ fastify.register(require('@fastify/websocket'), {
   options: { maxPayload: 1048576 },
 });
 
-class Action {
-  method;
-  payload;
-  message;
-}
 
 fastify.register(async function (fastify) {
   fastify.get('/', { websocket: true }, (connection, req) => {

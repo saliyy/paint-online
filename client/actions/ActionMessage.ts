@@ -1,13 +1,9 @@
-import {User} from "~/store/userStore";
-
 export default interface ActionMessage {
-    message: string
-
-    author: User
+    text: string
 
     showInCanvasActionBar: boolean;
 
     showInActivityWindow: boolean;
 
-    createdAt: Date
+    createdAt?: Date
 }

@@ -1,11 +1,12 @@
 import {User} from "~/store/userStore";
-
+import ActionMessage from "~/actions/ActionMessage";
+import {Payload} from "~/actions/ActionStrategy";
 
 export default interface IAction {
     readonly method: string
-    user?: User,
-    payload: any
-    message?: string
-    receive(payload: any): void
+    user: User,
+    payload: Payload
+    message?: ActionMessage,
     send(): Promise<void>
+    receive(payload: Payload): void
 }

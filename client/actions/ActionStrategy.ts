@@ -1,17 +1,21 @@
 import IAction from "~/actions/IAction";
 import {User, useUserStore} from "~/store/userStore";
 import {useWS} from "~/store/wsState";
+import ActionMessage from "~/actions/ActionMessage";
+
+export interface Payload extends Record<string | number, any>{}
 
 export default abstract class ActionStrategy implements IAction {
-    message: string;
+    message?: ActionMessage = null;
 
     readonly method: string = this.constructor.name;
 
-    user: User = useUserStore().getUser;
+    user: User;
 
-    payload: any;
+    payload: Payload;
 
-    protected constructor(payload: any) {
+    protected constructor(payload: Payload) {
+        this.user = useUserStore().getUser
         this.payload = payload
     }
 
@@ -19,6 +23,6 @@ export default abstract class ActionStrategy implements IAction {
         await useWS().sendAction(this)
     }
 
-    receive(payload: any): void {
+    public receive(payload: Payload) {
     }
 }
