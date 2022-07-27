@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useActionsState } from "@/store/actionsState";
+import { useActionsState } from "~/store/actionMessagesState";
 import { useWS } from "@/store/wsState";
 const ws = useWS()
 const actionsState = useActionsState();

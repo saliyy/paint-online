@@ -1,31 +1,23 @@
-import { useWS } from '../../store/wsState';
 import { Coords } from "~/canvas-tools/types/Coords";
 import IAction from "~/actions/IAction";
-import {ActionMessage} from "~/actions/ActionMessage";
 import Brush from "~/canvas-tools/Brush";
+import ActionStrategy from "~/actions/ActionStrategy";
 
 export interface BrushActionPayload {
     x: Coords;
     y: Coords;
 }
 
-export default class BrushDrawAction implements IAction {
-
-    readonly method: string = this.constructor.name
-
-    message: ActionMessage
-
-    payload: BrushActionPayload;
-
+export default class BrushDrawAction extends ActionStrategy implements IAction {
     constructor(payload: BrushActionPayload) {
-        this.payload = payload
+        super(payload);
     }
 
     public async send() {
-        return await useWS().sendAction(this)
+        await super.send()
     }
 
-    public async receive(payload: BrushActionPayload) {
-        await Brush.draw(payload.x, payload.y)
+    public receive(payload: BrushActionPayload) {
+        Brush.draw(payload.x, payload.y)
     }
 }

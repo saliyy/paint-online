@@ -2,14 +2,14 @@ import { useUserStore } from '@/store/userStore';
 import { defineStore } from 'pinia'
 import {identifyAction} from "~/actions/utils/IdentifyAction";
 import IAction from "~/actions/IAction";
-import {useActionsState} from "~/store/actionsState";
+import {useActionsMessagesState} from "~/store/actionMessagesState";
 
 export const onReceive = (m: MessageEvent) => {
     const data = JSON.parse(m.data)
 
     identifyAction(data).then((concreteAction: IAction) => {
         concreteAction.receive(data.payload)
-        useActionsState().addAction(concreteAction)
+        useActionsMessagesState().addActionMessage(concreteAction.message)
     }).catch((err) => {
         console.error(err)
     })

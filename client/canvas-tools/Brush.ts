@@ -6,7 +6,7 @@ import BrushDrawAction from "~/actions/concrete-actions/BrushDrawAction";
 
 
 // уснести по своим директориям
-async function sendToWs(brushPayload: BrushActionPayload) {
+async function sendToWs(brushPayload: BrushActionPayload): Promise<void> {
     const brushDrawAction = new BrushDrawAction(brushPayload);
     await brushDrawAction.send()
 }

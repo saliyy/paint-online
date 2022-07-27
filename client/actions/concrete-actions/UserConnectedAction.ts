@@ -1,29 +1,16 @@
 import IAction from "~/actions/IAction";
-import {ActionMessage} from "~/actions/ActionMessage";
-import {useWS} from "~/store/wsState";
-import {User, useUserStore} from "~/store/userStore";
+import ActionStrategy from "~/actions/ActionStrategy";
 
-export default class UserConnectedAction implements IAction {
-
-    readonly method: string = this.constructor.name
-
-    user: User = useUserStore().getUser;
-
-    message: ActionMessage
-
-    payload: [];
-
+export default class UserConnectedAction extends ActionStrategy implements IAction {
     constructor(payload: []) {
-        this.payload = payload
-        this.message = new ActionMessage()
+        super(payload);
     }
 
-    public async send() {
-        this.message.setMessage(`Пользователь ${this.user.name} подключился к системе`)
-        await useWS().sendAction(this)
+    public receive(payload: []) {
+
     }
 
-    public async receive(payload: []) {
-
+    async send() {
+        await super.send()
     }
 }
