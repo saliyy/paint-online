@@ -1,10 +1,9 @@
-import ActionStrategy, {Payload} from "~/actions/ActionStrategy";
+import Action, {Payload} from "~~/actions/Action";
 import IAction from "~/actions/IAction";
-import ActionMessage from "~/actions/ActionMessage";
 
 export interface UserConnectionPayload extends Payload {}
 
-export default class UserConnectedAction extends ActionStrategy implements IAction {
+export default class UserConnectedAction extends Action implements IAction {
     constructor(payload: UserConnectionPayload) {
         super(payload);
     }

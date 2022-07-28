@@ -6,7 +6,7 @@ export const useActionsMessagesState = defineStore('actions', () => {
     const actionMessages: ActionMessage[] = reactive([])
 
     const messagesShowInActivity = computed(() => {
-        return actionMessages.map(message => message.showInActivityWindow)
+        return actionMessages.filter(message => message.showInActivityWindow)
     })
 
     function addActionMessage(message: ActionMessage) {

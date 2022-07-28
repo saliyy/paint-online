@@ -1,7 +1,7 @@
 import IAction from "../IAction";
 
-export const identifyAction = async (action: IAction): Promise<IAction | null> => {
-    let module = await import(`../concrete-actions/${action.method}.ts`)
+export const identifyAction = async (action: IAction): Promise<IAction> => {
+    const module = await import(`../concrete-actions/${action.method}.ts`)
 
     if (!module) {
         throw new Error("module not found")

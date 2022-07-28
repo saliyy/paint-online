@@ -1,6 +1,7 @@
+import ActionMessage from '~/actions/ActionMessage';
 import { Coords } from "~/canvas-tools/types/Coords";
 import Brush from "~/canvas-tools/Brush";
-import ActionStrategy, {Payload} from "~/actions/ActionStrategy";
+import Action, {Payload} from "~~/actions/Action";
 import IAction from "~/actions/IAction";
 
 export interface BrushActionPayload extends Payload {
@@ -8,7 +9,7 @@ export interface BrushActionPayload extends Payload {
     y: Coords;
 }
 
-export default class BrushDrawAction extends ActionStrategy implements IAction {
+export default class BrushDrawAction extends Action implements IAction {
     constructor(payload: BrushActionPayload) {
         super(payload);
     }

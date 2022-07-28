@@ -8,8 +8,8 @@ export const onReceive = (m: MessageEvent) => {
 
     identifyAction(data).then((concreteAction: IAction) => {
         concreteAction.receive(data.payload)
-        if (concreteAction.message && concreteAction.message.text.length) {
-            useActionsMessagesState().addActionMessage(concreteAction.message)
+        if (data.message && data.message.text.length) {
+            useActionsMessagesState().addActionMessage(data.message)
         }
     }).catch((err) => {
         console.error(err)

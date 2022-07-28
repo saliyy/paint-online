@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-import { useActionsState } from "~/store/actionMessagesState";
-import { useWS } from "@/store/wsState";
-const ws = useWS()
-const actionsState = useActionsState();
+import { useActionsMessagesState } from "~/store/actionMessagesState";
+const actionMessagesState = useActionsMessagesState();
 </script>
 
 <template>
  <div>
     <ul>
-        <li v-for="action in actionsState.actionsInActivityWin" :key="action.message">
-            {{ action.message.getMessage() }}
+        <li v-for="message in actionMessagesState.messagesShowInActivity" :key="message.id">
+            {{ message.createdAt }}: {{ message.text }}
         </li>
     </ul>
  </div>

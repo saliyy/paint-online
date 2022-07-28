@@ -5,7 +5,7 @@ import ActionMessage from "~/actions/ActionMessage";
 
 export interface Payload extends Record<string | number, any>{}
 
-export default abstract class ActionStrategy implements IAction {
+export default abstract class Action implements IAction {
     message?: ActionMessage = null;
 
     readonly method: string = this.constructor.name;
@@ -24,5 +24,6 @@ export default abstract class ActionStrategy implements IAction {
     }
 
     public receive(payload: Payload) {
+        // will some basic code
     }
 }
