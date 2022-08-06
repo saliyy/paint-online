@@ -1,3 +1,4 @@
+import { useCanvasContext2DStore } from './../store/canvasContextState';
 export default abstract class Tool {
     protected ctx: CanvasRenderingContext2D;
     
@@ -12,6 +13,10 @@ export default abstract class Tool {
 
     set lineWidth(width: number) {
         this.ctx.lineWidth = width
+    }
+
+    static get ctx(): CanvasRenderingContext2D  {
+        return useCanvasContext2DStore().getCtx
     }
 
     destroyEvents(): void {

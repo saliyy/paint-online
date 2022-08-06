@@ -1,9 +1,9 @@
 import { BrushActionPayload } from '../actions/concrete-actions/BrushDrawAction';
-import { useCanvasContext2DStore } from './../store/canvasContextState';
 import Tool from "./Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
 import BrushDrawAction from "~/actions/concrete-actions/BrushDrawAction";
 
+// todo подумать и унести в отдельный класс типо рисующих и от него отнаследовать Eraser и Brush
 
 // уснести по своим директориям
 async function sendToWs(brushPayload: BrushActionPayload): Promise<void> {
@@ -17,6 +17,8 @@ export default class Brush extends Tool {
 
     constructor(ctx: CanvasRenderingContext2D) {
        super(ctx)
+       this.ctx.strokeStyle = '#000000';
+       this.ctx.lineWidth = 1
        this.listen()
     }
 
@@ -47,8 +49,8 @@ export default class Brush extends Tool {
         }
     }
 
-    public static draw(x: Coords, y: Coords, ctx: CanvasRenderingContext2D = useCanvasContext2DStore().getCtx) {
-        ctx.lineTo(x, y)
-        ctx.stroke()
+    public static draw(x: Coords, y: Coords) {
+        this.ctx.lineTo(x, y)
+        this.ctx.stroke()
     }
 }

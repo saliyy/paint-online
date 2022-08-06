@@ -1,4 +1,3 @@
-import ActionMessage from '~/actions/ActionMessage';
 import { Coords } from "~/canvas-tools/types/Coords";
 import Brush from "~/canvas-tools/Brush";
 import Action, {Payload} from "~~/actions/Action";
