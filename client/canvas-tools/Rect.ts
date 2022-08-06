@@ -1,5 +1,11 @@
+import RectDrawAction, { RectDrawPayload } from './../actions/concrete-actions/RectDrawAction';
 import Tool from "~/canvas-tools/Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
+
+async function sendToWs(payload: RectDrawPayload) {
+    const rectDrawAction = new RectDrawAction(payload)
+    await rectDrawAction.send()
+}
 
 export default class Rect extends Tool {
     constructor(ctx: CanvasRenderingContext2D) {
@@ -16,7 +22,11 @@ export default class Rect extends Tool {
 
     private yWhereMouseStart: Coords;
 
-    private savedImageUrl: string;
+    private width: number;
+
+    private height: number;
+
+    public savedImageUrl: string;
 
     private listen(): void {
         this.ctx.canvas.onmousedown   = this.onMouseDown.bind(this)
@@ -36,17 +46,18 @@ export default class Rect extends Tool {
         if (this.isMouseDown) {
             let xNow = e.pageX - this.ctx.canvas.offsetLeft
             let yNow = e.pageY - this.ctx.canvas.offsetTop
-            let width = xNow - this.xWhereMouseStart
-            let height = yNow - this.xWhereMouseStart
-            this.draw(this.xWhereMouseStart, this.yWhereMouseStart, width, height)
+            this.width = xNow - this.xWhereMouseStart
+            this.height = yNow - this.xWhereMouseStart
+            this.draw(this.xWhereMouseStart, this.yWhereMouseStart, this.width, this.height)
         }
     }
 
     private onMouseUp(e: MouseEvent) {
         this.isMouseDown = false
+        sendToWs({ x: this.xWhereMouseStart, y: this.yWhereMouseStart, width: this.width, height: this.height })
     }
 
-    private draw(x: Coords, y: Coords, width: number, height: number) {
+    public draw(x: Coords, y: Coords, width: number, height: number) {
         const img = new Image()
         img.src = this.savedImageUrl
         img.onload = () => {
@@ -57,5 +68,12 @@ export default class Rect extends Tool {
             this.ctx.fill()
             this.ctx.stroke()
         }
+    }
+
+    public static draw(x: Coords, y: Coords, width: number, height: number) {
+        this.ctx.beginPath()
+        this.ctx.rect(x, y, width, height)
+        this.ctx.fill()
+        this.ctx.stroke()
     }
 }
