@@ -1,3 +1,4 @@
+import BrushMouseUpAction from '~~/actions/concrete-actions/BrushMouseUpAction';
 import { BrushActionPayload } from '../actions/concrete-actions/BrushDrawAction';
 import Tool from "./Tool";
 import {Coords} from "~/canvas-tools/types/Coords";
@@ -9,6 +10,12 @@ import BrushDrawAction from "~/actions/concrete-actions/BrushDrawAction";
 async function sendToWs(brushPayload: BrushActionPayload): Promise<void> {
     const brushDrawAction = new BrushDrawAction(brushPayload);
     await brushDrawAction.send()
+}
+
+
+async function sendMouseWasUp() {
+    const brushMouseUpAction = new BrushMouseUpAction({})
+    await brushMouseUpAction.send()
 }
 
 
@@ -37,6 +44,7 @@ export default class Brush extends Tool {
 
     private onMouseUpHandler() {
         this.isMouseDown = false
+        sendMouseWasUp()
     }
 
 
@@ -50,6 +58,9 @@ export default class Brush extends Tool {
     }
 
     public static draw(x: Coords, y: Coords) {
+        // временная реализация
+        this.ctx.strokeStyle = '#000000';
+        this.ctx.lineWidth = 1
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
     }
