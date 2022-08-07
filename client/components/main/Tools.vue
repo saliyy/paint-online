@@ -7,10 +7,12 @@ import Eraser from "~~/canvas-tools/Eraser";
 import Rect from "~~/canvas-tools/Rect";
 import { onMounted } from "vue";
 import { downloadCanvas } from "~/utils/downloadCanvas";
+import { useActionsMessagesState } from "~~/store/actionMessagesState";
 
 const toolState = useToolStore();
 const canvasState = useCanvasContext2DStore();
 const ctx = canvasState.getCtx;
+const actionMessageState = useActionsMessagesState()
 
 function setTool(tool: Tool) {
   toolState.setTool(tool);
@@ -34,6 +36,7 @@ function save() {
 </script>
 
 <template>
+<div class="panel">
   <div class="toolbar">
     <button class="toolbar__button brush" @click="setTool(new Brush(ctx))" />
     <button class="toolbar__button rect" @click="setTool(new Rect(ctx))" />
@@ -55,6 +58,14 @@ function save() {
         @change="setLineWidth"
       />
     </div>
+  </div>
+
+    <div class="activity">
+      <span v-if="actionMessageState.getActivityMessage()">
+          {{ actionMessageState.getActivityMessage().text }} 
+      </span>
+    </div>
+
   </div>
 </template>
 

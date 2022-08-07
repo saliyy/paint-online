@@ -8,9 +8,16 @@ export const onReceive = (m: MessageEvent) => {
 
     identifyAction(data).then((concreteAction: IAction) => {
         concreteAction.receive(data.payload)
-        if (data.message && data.message.text.length) {
-            useActionsMessagesState().addActionMessage(data.message)
+        if (data.message) {
+            if (data.message.text.length) {
+                useActionsMessagesState().addActionMessage(data.message)
+            }
+
+            if (data.message.showInCanvasActionBar) {
+                useActionsMessagesState().setActivityMessage(data.message)
+            }
         }
+      
     }).catch((err) => {
         console.error(err)
     })

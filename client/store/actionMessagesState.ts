@@ -9,13 +9,27 @@ export const useActionsMessagesState = defineStore('actions', () => {
         return actionMessages.filter(message => message.showInActivityWindow)
     })
 
+    const messageInCanvasActivity = ref<ActionMessage>();
+
     function addActionMessage(message: ActionMessage) {
         actionMessages.push(message)
+    }
+
+    function getActivityMessage() {
+        debugger
+        return messageInCanvasActivity.value
+    }
+
+    function setActivityMessage(message: ActionMessage) {
+        debugger
+        messageInCanvasActivity.value = message
     }
 
     return {
         actionMessages,
         messagesShowInActivity,
-        addActionMessage
+        addActionMessage,
+        getActivityMessage,
+        setActivityMessage
     }
 })
