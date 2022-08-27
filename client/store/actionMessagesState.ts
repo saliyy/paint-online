@@ -16,12 +16,10 @@ export const useActionsMessagesState = defineStore('actions', () => {
     }
 
     function getActivityMessage() {
-        debugger
         return messageInCanvasActivity.value
     }
 
     function setActivityMessage(message: ActionMessage) {
-        debugger
         messageInCanvasActivity.value = message
     }
 

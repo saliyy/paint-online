@@ -1,0 +1,23 @@
+{
+  "name": "paint-online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"(npm run dev --prefix client)\" \"(npm run nodemon --prefix server)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saliyy/paint-online.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saliyy/paint-online/issues"
+  },
+  "homepage": "https://github.com/saliyy/paint-online#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
+}

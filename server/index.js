@@ -14,9 +14,9 @@ fastify.register(async function (fastify) {
       switch (message.method) {
         case 'UserConnectedAction':
           authHanlder(connection.socket, message);
-          actionHandler(message);
           break;
       }
+      actionHandler(message);
       console.log(message);
       fastify.websocketServer.clients.forEach(function each(client) {
         if (
@@ -62,7 +62,7 @@ function actionHandler(message) {
         text: `User ${message.user.name} is drawing by brush`,
         showInCanvasActionBar: true,
         showInActivityWindow: false,
-        createdAt: dayjs().format('HH:MM'),
+        createdAt: new Date().toLocaleTimeString(),
       };
   }
 }

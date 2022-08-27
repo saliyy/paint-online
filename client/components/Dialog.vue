@@ -21,7 +21,7 @@ const closeModal = (): void => emits('close')
       <div class="modal__dialog">
         <div class="modal__header">
           <slot name="header" />
-          <button type="button" class="modal__close" @click="closeModal()">
+          <button type="button" class="modal__close" @click="closeModal">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
               <path
                 fill="currentColor"
