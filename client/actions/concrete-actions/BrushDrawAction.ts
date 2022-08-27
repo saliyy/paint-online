@@ -2,10 +2,16 @@ import { Coords } from "~/canvas-tools/types/Coords";
 import Brush from "~/canvas-tools/Brush";
 import Action, {Payload} from "~~/actions/Action";
 import IAction from "~/actions/IAction";
+import Tool from "~/canvas-tools/Tool";
+
+export type BrushStyle =
+    Pick<CanvasPathDrawingStyles, "lineWidth">
+    & Pick<CanvasFillStrokeStyles, "strokeStyle">;
 
 export interface BrushActionPayload extends Payload {
     x: Coords;
     y: Coords;
+    style?: BrushStyle;
 }
 
 export default class BrushDrawAction extends Action implements IAction {
@@ -14,10 +20,22 @@ export default class BrushDrawAction extends Action implements IAction {
     }
 
     public async send() {
+
+        this.payload.style = {
+            lineWidth: Tool.ctx.lineWidth,
+            strokeStyle: Tool.ctx.strokeStyle
+        }
+
         await super.send()
     }
 
     public receive(payload: BrushActionPayload) {
-        Brush.draw(payload.x, payload.y)
+
+        if (payload.style) {
+            Tool.ctx.strokeStyle = payload.style.strokeStyle
+            Tool.ctx.lineWidth = payload.style.lineWidth
+        }
+
+        Brush.draw(payload)
     }
 }

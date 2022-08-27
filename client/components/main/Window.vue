@@ -6,13 +6,6 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 let canvas: HTMLCanvasElement = ref(null);
 const canvasState = useCanvasContext2DStore();
 
-function resizeListener(): void {
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-}
-
 function pushToUndo() {
   if (canvasState.canvasIsAvailable) {
     canvasState.pushToUndo();
@@ -21,7 +14,6 @@ function pushToUndo() {
 
 onMounted(() => {
   canvas = canvasRef.value;
-  resizeListener();
   canvasState.setCanvas(canvas);
 });
 

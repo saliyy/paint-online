@@ -70,9 +70,9 @@ export default class Rect extends Tool {
         }
     }
 
-    public static draw(x: Coords, y: Coords, width: number, height: number) {
+    public static draw(rectDraPayload: RectDrawPayload) {
         this.ctx.beginPath()
-        this.ctx.rect(x, y, width, height)
+        this.ctx.rect(rectDraPayload.x, rectDraPayload.y, rectDraPayload.width, rectDraPayload.height)
         this.ctx.fill()
         this.ctx.stroke()
     }

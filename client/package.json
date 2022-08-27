@@ -3,7 +3,6 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "all": "nuxt dev && cd /server && npm run nodemon",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },
