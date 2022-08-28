@@ -74,5 +74,14 @@ function actionHandler(message) {
         createdAt: new Date().toLocaleTimeString(),
       };
       return message;
+    case 'RedoAndoAction':
+      message.message = {
+        id: uuidv4(),
+        text: `User ${message.user.name} do ${message.payload.type}`,
+        showInCanvasActionBar: true,
+        showInActivityWindow: false,
+        createdAt: new Date().toLocaleTimeString(),
+      };
+      return message;
   }
 }
