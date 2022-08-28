@@ -61,8 +61,8 @@ function save() {
   </div>
 
     <div class="activity">
-      <span v-if="actionMessageState.getActivityMessage()">
-          {{ actionMessageState.getActivityMessage().text }} 
+      <span v-if="actionMessageState.hasActivityMessage">
+          {{ actionMessageState.getActivityMessage.text }}
       </span>
     </div>
 

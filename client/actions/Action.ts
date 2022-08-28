@@ -23,7 +23,7 @@ export default abstract class Action implements IAction {
         await useWS().sendAction(this)
     }
 
-    public receive(payload: Payload) {
+    public receive(payload: Payload): void {
         // will some basic code
     }
 }

@@ -64,5 +64,15 @@ function actionHandler(message) {
         showInActivityWindow: false,
         createdAt: new Date().toLocaleTimeString(),
       };
+      return message;
+    case 'RectDrawAction':
+      message.message = {
+        id: uuidv4(),
+        text: `User ${message.user.name} is drawing by rect`,
+        showInCanvasActionBar: true,
+        showInActivityWindow: false,
+        createdAt: new Date().toLocaleTimeString(),
+      };
+      return message;
   }
 }

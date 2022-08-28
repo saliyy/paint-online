@@ -15,9 +15,17 @@ export const useActionsMessagesState = defineStore('actions', () => {
         actionMessages.push(message)
     }
 
-    function getActivityMessage() {
-        return messageInCanvasActivity.value
-    }
+    const hasActivityMessage = computed((): boolean => {
+        return !!messageInCanvasActivity.value
+    })
+
+    const getActivityMessage = computed((): ActionMessage | '' => {
+        if (hasActivityMessage) {
+            return messageInCanvasActivity.value
+        }
+
+        return ''
+    })
 
     function setActivityMessage(message: ActionMessage) {
         messageInCanvasActivity.value = message
@@ -27,6 +35,7 @@ export const useActionsMessagesState = defineStore('actions', () => {
         actionMessages,
         messagesShowInActivity,
         addActionMessage,
+        hasActivityMessage,
         getActivityMessage,
         setActivityMessage
     }
