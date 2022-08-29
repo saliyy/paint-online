@@ -19,10 +19,11 @@ fastify.register(async function (fastify) {
       actionHandler(message);
       console.log(message);
       fastify.websocketServer.clients.forEach(function each(client) {
-        if (
-          client.readyState === 1 &&
-          client.id !== message.user.id
-        ) {
+        if(client.readyState === 1 && client.id !== message.user.id) {
+          client.send(JSON.stringify(message));
+        }
+
+        if (client.id === message.user.id && message.method === 'ChatMessageAction') {
           client.send(JSON.stringify(message));
         }
       });
@@ -80,6 +81,15 @@ function actionHandler(message) {
         text: `User ${message.user.name} do ${message.payload.type}`,
         showInCanvasActionBar: true,
         showInActivityWindow: false,
+        createdAt: new Date().toLocaleTimeString(),
+      };
+      return message;
+    case 'ChatMessageAction':
+      message.message = {
+        id: uuidv4(),
+        text: `${message.user.name}: ${message.payload.textMessage}`,
+        showInCanvasActionBar: false,
+        showInActivityWindow: true,
         createdAt: new Date().toLocaleTimeString(),
       };
       return message;

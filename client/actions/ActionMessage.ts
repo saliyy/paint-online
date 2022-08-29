@@ -1,7 +1,7 @@
 export default interface ActionMessage {
     id: number | string,
     
-    text: string
+    text: string;
 
     showInCanvasActionBar: boolean;
 
