@@ -8,6 +8,10 @@ fastify.register(require('@fastify/websocket'), {
 });
 
 fastify.register(async function (fastify) {
+  fastify.get('/test', (req, res) => {
+    return res.send('Hey from container!');
+  });
+
   fastify.get('/', { websocket: true }, (connection, req) => {
     connection.socket.on('message', (message) => {
       message = JSON.parse(message);
@@ -19,11 +23,17 @@ fastify.register(async function (fastify) {
       actionHandler(message);
       console.log(message);
       fastify.websocketServer.clients.forEach(function each(client) {
-        if(client.readyState === 1 && client.id !== message.user.id) {
+        if (
+          client.readyState === 1 &&
+          client.id !== message.user.id
+        ) {
           client.send(JSON.stringify(message));
         }
 
-        if (client.id === message.user.id && message.method === 'ChatMessageAction') {
+        if (
+          client.id === message.user.id &&
+          message.method === 'ChatMessageAction'
+        ) {
           client.send(JSON.stringify(message));
         }
       });
@@ -31,7 +41,7 @@ fastify.register(async function (fastify) {
   });
 });
 
-fastify.listen({ port: 5000 }, (err, address) => {
+fastify.listen(5000, '127.0.0.1', (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);

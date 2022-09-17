@@ -15,4 +15,10 @@ export default defineNuxtConfig({
             },
         },
     },
+    runtimeConfig: {
+        public: {
+            baseApi: '',
+            baseWs: ''
+        }
+    }
 })

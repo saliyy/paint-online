@@ -8,6 +8,8 @@ const isAuthError = ref(false);
 const userState = useUserStore();
 const wsState = useWS();
 const dialogVisible = ref(true);
+const config = useRuntimeConfig()
+
 
 const auth = () => {
   isAuthError.value = false;
@@ -15,7 +17,7 @@ const auth = () => {
     isAuthError.value = true;
   } else {
     userState.setUser({ name: userName.value });
-    const ws = wsState.registerWS(`ws://127.0.0.1:5000/`);
+    const ws = wsState.registerWS(config.baseWs);
     ws.onopen = () => {
       const userConnectedAction = new UserConnectedAction([])
       userConnectedAction.send()
