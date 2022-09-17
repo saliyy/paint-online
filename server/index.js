@@ -2,6 +2,8 @@
 
 const fastify = require('fastify')();
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config();
+
 
 fastify.register(require('@fastify/websocket'), {
   options: { maxPayload: 1048576 },
@@ -41,7 +43,7 @@ fastify.register(async function (fastify) {
   });
 });
 
-fastify.listen(5000, '127.0.0.1', (err, address) => {
+fastify.listen(process.env.PORT, process.env.HOST ?? '127.0.0.1', (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
