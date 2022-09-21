@@ -17,7 +17,7 @@ const auth = () => {
     isAuthError.value = true;
   } else {
     userState.setUser({ name: userName.value });
-    const ws = wsState.registerWS(config.baseWs);
+    const ws = wsState.registerWS(`ws://${config.baseServerHost}:${config.baseServerPort}`);
     ws.onopen = () => {
       const userConnectedAction = new UserConnectedAction([])
       userConnectedAction.send()
@@ -65,8 +65,8 @@ button + button {
 span {
   color: darkred;
   button: {
-    margin-left: 5px; 
-  } 
+    margin-left: 5px;
+  }
 }
 
 .not-auth {

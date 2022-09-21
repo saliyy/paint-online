@@ -17,8 +17,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            baseApi: '',
-            baseWs: ''
+            baseServerPort: '',
+            baseServerHost: ''
         }
     }
 })

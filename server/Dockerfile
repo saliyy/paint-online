@@ -6,12 +6,8 @@ COPY package.json package-lock.json /server/
 
 RUN npm install
 
-ARG PORT=5000
-ENV PORT=${PORT}
-ENV HOST=0.0.0.0
-
 COPY . .
 
-EXPOSE ${PORT}
+EXPOSE 5000
 
 CMD ["npm", "run", "nodemon"]
