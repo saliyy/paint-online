@@ -1,13 +1,11 @@
 FROM node:latest
 
-WORKDIR /client
+RUN mkdir -p /usr/src/client_app
+WORKDIR /usr/src/client_app
 
-COPY package.json package-lock.json /client/
-
+COPY . /usr/src/client_app
 RUN npm install
-
-COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "preview"]

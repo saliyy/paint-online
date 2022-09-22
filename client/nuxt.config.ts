@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             baseServerPort: '',
-            baseServerHost: ''
+            baseServerHost: '127.0.0.1'
         }
     }
 })

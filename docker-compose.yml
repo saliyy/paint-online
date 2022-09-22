@@ -1,10 +1,9 @@
 version: '1.0'
 
-
+#ONLY FOR PREVIEW
 services:
   client:
     build: ./client
-    restart: always
     env_file:
       - .env
     environment:
@@ -12,7 +11,7 @@ services:
       - NUXT_PUBLIC_BASE_SERVER_HOST=${SERVER_HOST}
     ports:
       - 3000:3000
-
+    tty: true
 
   server:
     build: ./server
@@ -22,6 +21,8 @@ services:
     environment:
       - PORT=${SERVER_PORT}
       - HOST=${SERVER_HOST}
+    ports:
+      - 5000:${SERVER_PORT}
 
 
 
