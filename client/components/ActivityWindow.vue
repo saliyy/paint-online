@@ -1,9 +1,24 @@
 <script lang="ts" setup>
 import { useActionsMessagesState } from "~/store/actionMessagesState";
 import ChatMessageAction from "~/actions/concrete-actions/ChatMessageAction";
+import { useActionObservableStore } from "~~/store/actionsObservableStore";
+import BrushDrawAction from "~~/actions/concrete-actions/BrushDrawAction";
+import IAction from '~~/actions2/actions/Action'
+import { throttle, throttleTime } from "rxjs";
+
 const actionMessagesState = useActionsMessagesState();
 
 const message = ref<string>('');
+
+
+onMounted(() => {
+  useActionObservableStore()
+    .getSubjectOf(BrushDrawAction)
+    .pipe(throttleTime(1000))
+    .subscribe({
+      next: (value: IAction) =>  console.log(value)
+    })
+})
 
 const sendMessageToChat = () => {
   ChatMessageAction.send({ textMessage: message.value }).then(() => {

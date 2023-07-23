@@ -1,22 +1,14 @@
 import { defineStore } from 'pinia'
 import {identifyAction} from "~/actions/utils/IdentifyAction";
 import {useActionsMessagesState} from "~/store/actionMessagesState";
-import IAction from "~/actions/IAction";
+import IAction from '~~/actions2/actions/Action'
+import { useActionObservableStore } from './actionsObservableStore';
 
 export const onReceive = (m: MessageEvent) => {
     const data = JSON.parse(m.data)
 
     identifyAction(data).then((concreteAction: IAction) => {
-        concreteAction.receive(data.payload)
-        if (data.message) {
-            if (data.message.text.length) {
-                useActionsMessagesState().addActionMessage(data.message)
-            }
-
-            if (data.message.showInCanvasActionBar) {
-                useActionsMessagesState().setActivityMessage(data.message)
-            }
-        }
+        useActionObservableStore().emit(concreteAction)
       
     }).catch((err) => {
         console.error(err)

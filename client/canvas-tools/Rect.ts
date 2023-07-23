@@ -18,15 +18,15 @@ export default class Rect extends Tool {
     /*
      * Mouse has down on some x or y coordinate
      */
-    private xWhereMouseStart: Coords;
+    private xWhereMouseStart: Coords = 0;
 
-    private yWhereMouseStart: Coords;
+    private yWhereMouseStart: Coords = 0;
 
-    private width: number;
+    private width: number = 0;
 
-    private height: number;
+    private height: number = 0;
 
-    public savedImageUrl: string;
+    public savedImageUrl: string = "";
 
     private listen(): void {
         this.ctx.canvas.onmousedown   = this.onMouseDown.bind(this)

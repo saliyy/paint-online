@@ -66,7 +66,7 @@ const initialize = async() => {
     });
   });
 
-  await fastify.listen({ port: fastify.config.PORT, host: '0.0.0.0' }, (err, address) => {
+  await fastify.listen({ port: fastify.config.PORT, host: fastify.config.HOST }, (err, address) => {
     if (err) {
       console.error(err);
       process.exit(1);

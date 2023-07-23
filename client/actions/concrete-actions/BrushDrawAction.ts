@@ -1,7 +1,7 @@
 import { Coords } from "~/canvas-tools/types/Coords";
 import Brush from "~/canvas-tools/Brush";
 import Action, {Payload} from "~~/actions/Action";
-import IAction from "~/actions/IAction";
+import IAction from '~~/actions2/actions/Action'
 import Tool from "~/canvas-tools/Tool";
 
 export type BrushStyle =

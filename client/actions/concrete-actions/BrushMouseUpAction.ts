@@ -11,10 +11,9 @@ export default class BrushMouseUpAction extends Action implements IAction {
     async send(): Promise<void> {
         await super.send()
     }
-
+    
     receive(payload: Payload): void {
         const ctx = useCanvasContext2DStore().getCtx
         ctx.beginPath()
     }
-    
 }
