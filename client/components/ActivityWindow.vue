@@ -13,7 +13,7 @@ const message = ref<string>('');
 
 onMounted(() => {
   useActionObservableStore()
-    .getSubjectOf(BrushDrawAction)
+    .getObservableOf(BrushDrawAction)
     .pipe(throttleTime(1500))
     .subscribe({
       next: (value: IAction) =>  console.log(value)

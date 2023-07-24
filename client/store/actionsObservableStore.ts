@@ -37,7 +37,7 @@ export const useActionObservableStore = defineStore('actionsObserverable', () =>
 
 
     return {
-        emit, getSubjectOf
+        emit, getObservableOf
     }
     
 })
