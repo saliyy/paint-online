@@ -22,7 +22,7 @@ export const useActionObservableStore = defineStore('actionsObserverable', () =>
         }
     }
 
-    function getSubjectOf(action: Function): Observable<IAction> {         
+    function getObservableOf(action: Function): Observable<IAction> {         
         
         if (!subscribers.has(action.name)) {
 
