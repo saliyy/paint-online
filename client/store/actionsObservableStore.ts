@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Subject } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import IAction from '~~/actions2/actions/Action'
 
 
@@ -22,7 +22,7 @@ export const useActionObservableStore = defineStore('actionsObserverable', () =>
         }
     }
 
-    function getSubjectOf(action: Function): Subject<IAction> {         
+    function getSubjectOf(action: Function): Observable<IAction> {         
         
         if (!subscribers.has(action.name)) {
 
@@ -30,7 +30,7 @@ export const useActionObservableStore = defineStore('actionsObserverable', () =>
 
             subscribers.set(action.name, observeSubject);
 
-            return observeSubject
+            return observeSubject.asObservable()
         } 
         return subscribers.get(action.name)
     }
