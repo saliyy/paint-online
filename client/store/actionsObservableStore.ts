@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Observable, Subject } from 'rxjs'
-import IAction from '~~/actions2/actions/Action'
+import IAction from '~~/actions/Action'
 
 
 export type ActionName = string
@@ -32,7 +32,8 @@ export const useActionObservableStore = defineStore('actionsObserverable', () =>
 
             return observeSubject.asObservable()
         } 
-        return subscribers.get(action.name)
+
+        return subscribers.get(action.name).asObservable()
     }
 
 

@@ -2,22 +2,30 @@
 import { useActionsMessagesState } from "~/store/actionMessagesState";
 import ChatMessageAction from "~/actions/concrete-actions/ChatMessageAction";
 import { useActionObservableStore } from "~~/store/actionsObservableStore";
-import BrushDrawAction from "~~/actions/concrete-actions/BrushDrawAction";
 import IAction from '~~/actions2/actions/Action'
-import { throttle, throttleTime } from "rxjs";
+import { Subscription } from "rxjs";
 
 const actionMessagesState = useActionsMessagesState();
 
 const message = ref<string>('');
 
+let observableId$: Subscription | null = null;
 
 onMounted(() => {
-  useActionObservableStore()
-    .getObservableOf(BrushDrawAction)
-    .pipe(throttleTime(1500))
-    .subscribe({
-      next: (value: IAction) =>  console.log(value)
+  observableId$ = useActionObservableStore()
+  .getObservableOf(ChatMessageAction)
+  .subscribe({
+      next: (value: ChatMessageAction) => {
+        console.log(value)
+        if (value.message) {
+          actionMessagesState.addActionMessage(value.message)
+        }
+      }
     })
+})
+
+onBeforeUnmount(() => { 
+  observableId$.unsubscribe()
 })
 
 const sendMessageToChat = () => {

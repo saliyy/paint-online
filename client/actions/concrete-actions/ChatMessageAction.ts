@@ -18,6 +18,7 @@ export default class ChatMessageAction extends Action implements IAction {
     public static async send(payload: ChatMessageActionPayload): Promise<ActionMessage> {
         const messageAction = new this(payload)
 
+        console.log(messageAction)
         await messageAction.send()
 
         return messageAction.message

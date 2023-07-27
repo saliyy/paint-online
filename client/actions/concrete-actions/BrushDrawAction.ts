@@ -1,8 +1,9 @@
 import { Coords } from "~/canvas-tools/types/Coords";
 import Brush from "~/canvas-tools/Brush";
 import Action, {Payload} from "~~/actions/Action";
-import IAction from '~~/actions2/actions/Action'
+import IAction from '~~/actions/Action'
 import Tool from "~/canvas-tools/Tool";
+import ActionMessage from "../ActionMessage";
 
 export type BrushStyle =
     Pick<CanvasPathDrawingStyles, "lineWidth">
